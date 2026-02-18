@@ -8,7 +8,10 @@ from datetime import datetime, timedelta
 ALGORITHM = "HS256"
 SECRET_KEY="2a0f3d8ea6563bee690ed211df9d96cf83edb7a4bb8ee5eb738e4a04d634de77"
 ACCESS_TOKEN_DURATION = 1 # minutos
-router = APIRouter()
+router = APIRouter(prefix="/jwt_auth",
+                   tags=["jwt_auth_users"],
+                   responses=status.HTTP_404_NOT_FOUND: {"message": "No encontrado"})
+
 oauth2 = OAuth2PasswordBearer(tokenUrl="login")
 
 crypt = CryptContext(schemes=["bcrypt"],deprecated="auto")
